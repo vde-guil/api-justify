@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=justify-api
+
+init 2021-06-14T20:18:21Z Valentin de Guillebon <valentin.de.guillebon@gmail.com> # table creation
+insert_user 2021-06-14T20:45:34Z Valentin de Guillebon <valentin.de.guillebon@gmail.com> # function to insert a user
