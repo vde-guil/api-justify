@@ -20,7 +20,7 @@ class User {
      * @param {*} data - a litteral object with properties that will be copied into the instance
      */
     constructor(data = {}) {
-        for (props in data) {
+        for (const props in data) {
             this[props] = data[props];
         }
     }
@@ -57,9 +57,9 @@ class User {
             try {
                 // we insert the new user thanks to the sql function we created
                 // we pass an object in paramater, he'll be cast in json
-                const myQuery = `SELECT * FROM insert_user($1)`;
+                const myQuery = `SELECT * FROM new_user($1)`;
 
-                const { rows } = db.query(myQuery, [this]);
+                const { rows } = await db.query(myQuery, [this]);
 
                 // the insert went sucessfully, we now update the instance with the id generated in db
                 this.id = +rows[0].id;

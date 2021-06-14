@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP FUNCTION insert_user(json);
+DROP FUNCTION new_user(json);
 
 COMMIT;

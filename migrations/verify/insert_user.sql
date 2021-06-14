@@ -2,6 +2,10 @@
 
 BEGIN;
 
-SELECT * FROM insert_user('{"email": "valentin.de.guillebon@gmail.com", "username":"valentin"}'::json);
+SELECT * FROM new_user('{
+                                "email": "valentin.de.guillebon@gmail.com", 
+                                "username":"valentin",
+                                "password":"bonjour"
+                            }'::json);
 
 ROLLBACK;

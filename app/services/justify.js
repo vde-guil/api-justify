@@ -1,6 +1,7 @@
 const MAX_LINE_LENGTH = 80;
 
 const LinkedList = require('./LinkedList/LinkedList');
+const {EOL} = require('os');
 
 const addMissingSpaces = (missingSpaceNbr, spaceNodes) => {
 
@@ -81,7 +82,7 @@ const justifyText = (text) => {
     //     console.log(line);
     // }
 
-    return result.join('\n');
+    return result.join(EOL);
 
 };
 

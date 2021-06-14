@@ -6,6 +6,7 @@ const router = require('./app/router');
 
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json());
 app.use(express.text());
 app.use('/api', router);
 
