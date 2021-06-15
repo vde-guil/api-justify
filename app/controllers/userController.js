@@ -2,6 +2,7 @@ const { hash, compare } = require('../services/crypt');
 
 const User = require('../models/User');
 
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     /**
@@ -31,18 +32,23 @@ module.exports = {
 
     login: async (req, res) => {
         const { email, password } = req.body;
-        console.log(email, password);
+
         try {
 
             const user = await User.findByEmail(email);
 
+            // if user not found in db or incorrect password => 401
             if (user === null || !(await compare(password, user.password))) {
 
                 res.status(401).json({ message: 'Auth failed' });
 
             } else {
-
-                res.status(200).json({ message: 'Auth successful' });
+                // auth successful, generate token
+                const token = jwt.sign(
+                    { email: user.email },
+                    process.env.JWT_SECRET,
+                    { expiresIn: 60 * 60/* 24h */ });
+                res.status(200).json({ token });
 
             }
         }

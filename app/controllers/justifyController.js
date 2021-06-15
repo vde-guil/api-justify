@@ -2,9 +2,9 @@ const { justifyText } = require('../services/justify');
 
 module.exports = {
     handleJustify: (req, res) => {
-        const text = req.body;
-
-        const justifiedText = justifyText(text);
+        const words = res.locals.words;
+       
+        const justifiedText = justifyText(words);
         res.send(justifiedText);
     },
 }

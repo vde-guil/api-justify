@@ -30,12 +30,7 @@ const addWordToLine = (line, word, spaceTab) => {
     spaceTab.push(spaceNod);
 }
 
-const justifyText = (text) => {
-
-    // some cleaning for the original text (extra spaces and newline chars)
-
-    const cleanedText = text.replace(/[\s\n]+/g, ' ').trim();
-    const words = cleanedText.split(' ');
+const justifyText = (words) => {
 
     // initialisation of variables
     const line = new LinkedList(); // linked list representing the current line
