@@ -10,7 +10,17 @@ Content-Type: application/json
 {
     "email": "valentin@gmail.com",
     "username": "valentin",
-    "password": "qwerty"
+    "password": "qwerty123"
+}
+
+### POST /login
+
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "valentin@gmail.com",
+    "password": "qwerty123"
 }
 
 ### POST /justify

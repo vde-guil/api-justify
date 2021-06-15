@@ -33,7 +33,7 @@ class User {
      * @async
      */
     static async findByEmail(email) {
-        const myQuery = `SELECT * FROM user WHERE email = $1`;
+        const myQuery = `SELECT * FROM "user" WHERE email = $1`;
 
         //prepared query to prevent injections
         const { rows } = await db.query(myQuery, [email]);
