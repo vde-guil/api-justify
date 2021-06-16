@@ -3,6 +3,12 @@ const MAX_LINE_LENGTH = 80;
 const LinkedList = require('./LinkedList/LinkedList');
 const {EOL} = require('os');
 
+/**
+ * function part of the justify service that will fill a line with spaces until the line reaches the
+ * MAX_LINE_LENGTH
+ * @param {number} missingSpaceNbr 
+ * @param {array<LinkNode>} spaceNodes 
+ */
 const addMissingSpaces = (missingSpaceNbr, spaceNodes) => {
 
     let index = 0;
@@ -20,16 +26,28 @@ const addMissingSpaces = (missingSpaceNbr, spaceNodes) => {
 
 }
 
+/**
+ * function part of the justify service that will add a word to the linked list and a space,
+ * and store the reference of the space in an array
+ * @param {LinkedList} line 
+ * @param {string} word 
+ * @param {array} spaceTab 
+ */
 const addWordToLine = (line, word, spaceTab) => {
     // add the current word, then a trailing space to the line structure
     line.add(word);
     line.add(' ');
 
     // then put a reference to the trailing spaceNode in an array for fast access later
-    const spaceNod = line.last;
-    spaceTab.push(spaceNod);
+    const spaceNode = line.last;
+    spaceTab.push(spaceNode);
 }
 
+/**
+ * function that takes an array of words and justifies it in lines of MAX_LINE_LENGTH length
+ * @param {array<string>} words 
+ * @returns 
+ */
 const justifyText = (words) => {
 
     // initialisation of variables
@@ -72,10 +90,6 @@ const justifyText = (words) => {
         line.removeLast();
         result.push(line.getLine());
     }
-
-    // for (const line of result) {
-    //     console.log(line);
-    // }
 
     return result.join(EOL);
 

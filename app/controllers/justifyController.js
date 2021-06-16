@@ -1,7 +1,14 @@
 const { justifyText } = require('../services/justify');
 
 module.exports = {
-    handleJustify: (req, res) => {
+
+    /**
+     * middleware that justifies text and send it back
+     * @param {*} req 
+     * @param {*} res 
+     */
+
+    handleJustify: (_, res) => {
         const words = res.locals.words;
        
         const justifiedText = justifyText(words);
