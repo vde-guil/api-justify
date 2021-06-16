@@ -1,12 +1,13 @@
 // options for the swagger documentation
-const options = {
+
+module.exports = {
     swaggerDefinition: {
         info: {
             description: 'REST API that justifies a text in parameters',
             title: 'api-verify',
             version: '1.0.0',
         },
-        host: `https://justify-api-vde-guil.herokuapp.com/`,
+        host: `justify-api-vde-guil.herokuapp.com`,
         basePath: '/api',
         produces: [
             "application/json",
@@ -18,15 +19,13 @@ const options = {
                 type: 'apiKey',
                 in: 'header',
                 name: 'Authorization',
-                description: "",
+                description: "header form: 'token XXXXXXXXXX'",
             }
         }
     },
     basedir: __dirname, //app absolute path
     files: [
-        './app/router.js',
-        './app/models/*.js'
+        './router.js',
+        './models/*.js'
     ] //Path to the API handle folder
 };
-
-module.exports = options;
