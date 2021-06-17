@@ -51,7 +51,7 @@ router.post('/login', validateBody(loginSchema), userController.login);
  * @param {string} req.body - the text to justify
  * @produces text/plain
  * @consumes text/plain
- * @returns {object} 200 - Object.token : the jwt token
+ * @returns {text/plain} 200 - the justified text
  * @returns {object} 401 - Object.message: Unauthorized
  * @return {object}  402 - when the limit rate has been reach
  * @returns {object} 500 - object.message: server error
