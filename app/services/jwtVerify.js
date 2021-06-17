@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 
 /**
  * express middleware that protects the route it is applied to by checking the token validity, then stores the user info in res.locals
- * @param {*} req 
- * @param {*} res 
+ * @param {object} req - request 
+ * @param {object} res - response
  * @param {*} next 
  * 
 */

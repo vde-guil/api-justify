@@ -32,6 +32,14 @@ const asyncClient = {
  * @returns - will respond with status 402 if daily limit exceeded or 
 */
 
+
+/**
+ * middleware that check if the word rate limit has been exceeded for the user, sends an error or updates
+ * the current user word count
+ * @param {object} req - request 
+ * @param {object} res - response
+ * @param {*} next 
+ */
 const limitRate = async (req, res, next) => {
 
     // i get the number of words from the words array create in previous middleware (cleanTextToJustify)

@@ -7,8 +7,8 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     /**
      * Inserts a new User in the database
-     * @param {*} req 
-     * @param {*} res 
+     * @param {object} req - request 
+     * @param {object} res - response
      */
     register: async (req, res) => {
 
@@ -23,7 +23,7 @@ module.exports = {
             await newUser.save();
 
             // response status 201 =  created
-            res.status(201).json({message: 'user Successfuly created'});
+            res.status(201).json({ message: 'user Successfuly created' });
         } catch (error) {
             // or error server
             res.status(500).json({ message: error.message });
@@ -33,8 +33,8 @@ module.exports = {
 
     /**
      * Verify that the user credentials checks out and generates a JWT token
-     * @param {*} req 
-     * @param {*} res 
+     * @param {object} req - request 
+     * @param {object} res - response
      */
 
     login: async (req, res) => {

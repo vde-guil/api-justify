@@ -61,6 +61,23 @@ module.exports = class LinkedList {
             tempNode.next = this.last;
         }
     }
+    /**
+     * add a new node in the beginning of the list
+     * @param {string} data 
+     * @returns 
+     */
+    pre(data) {
+        const newNode = new ListNode(data);
+
+        if (!this.size()) {
+            this.add(data);
+            return;
+        }
+
+        newNode.next = this.head;
+        this.head = newNode
+
+    }
 
     /**
      * return the number of nodes presents in the list
@@ -87,7 +104,7 @@ module.exports = class LinkedList {
         //  if list is empty
         if (this.head === null)
             return;
-        
+
         // we make a copy of the first element to iterate over it
         let curNode = this.head;
 
@@ -122,7 +139,7 @@ module.exports = class LinkedList {
         while (node.next.next !== null) {
             node = node.next;
         }
-        
+
         // we set the last current node to be the one pointing the the one before last
         this.last = node;
         //and make sure it becomes the last element by setting this next pointer to null

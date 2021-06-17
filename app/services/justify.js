@@ -1,7 +1,32 @@
 const MAX_LINE_LENGTH = 80;
 
 const LinkedList = require('./LinkedList/LinkedList');
-const {EOL} = require('os');
+const { EOL } = require('os');
+
+/**
+ * adds space in the line if there is only one big word in the line
+ * 
+ * @param {LinkedList} line 
+ * @param {number} missingSpaceNbr 
+ * @param {array<LinkedList>} spaceNodes 
+ * @returns number - the remaining number of spaces missing after treatment
+ */
+const checkOneWordCase = (line, missingSpaceNbr, spaceNodes) => {
+    // case if we have only one giant word in our line that is almost as big a the line
+    if (spaceNodes.length === 0 && missingSpaceNbr >= 1) {
+        for (let i = 0; i < 2 && missingSpaceNbr >= 0; i++) {
+            if (i % 2) {
+                line.pre(' ');
+                spaceNodes.push(line.head);
+            } else {
+                spaceNodes.push(line.last);
+
+            }
+            missingSpaceNbr--;
+        }
+    }
+    return missingSpaceNbr;
+}
 
 /**
  * function part of the justify service that will fill a line with spaces until the line reaches the
@@ -12,7 +37,23 @@ const {EOL} = require('os');
 const addMissingSpaces = (missingSpaceNbr, spaceNodes) => {
 
     let index = 0;
+
+    // case if we have only one giant word in our line that is almost as big a the line
+    if (spaceNodes.length === 0 && missingSpaceNbr >= 1) {
+        for (let i = 0; i < 2 && missingSpaceNbr >= 0; i++) {
+            if (i % 2) {
+                line.pre(' ');
+                spaceNodes.push(line.head);
+            } else {
+                spaceNodes.push(line.last);
+
+            }
+            missingSpaceNbr--;
+        }
+    }
+
     // if there is more missing spaces than spaces Nodes present in the line, add a second space to every space Node available ...
+
     if (missingSpaceNbr >= spaceNodes.length) {
         for (; index < spaceNodes.length; index++) {
             spaceNodes[index].word += ' ';
@@ -69,9 +110,13 @@ const justifyText = (words) => {
             line.removeLast();
             spaceNodes.pop();
 
-            // add spaces to justify the lines
-            const spaceNbr = MAX_LINE_LENGTH - line.totalChars;
+            // the number of spaces missing until we reach teh correct line length
+            let spaceNbr = MAX_LINE_LENGTH - line.totalChars;
 
+            // check and deal accordingly if there is only one big word fitting in that line
+            spaceNbr = checkOneWordCase(line, spaceNbr, spaceNodes);
+
+            // add spaces to justify the lines            
             addMissingSpaces(spaceNbr, spaceNodes)
 
             // store the line

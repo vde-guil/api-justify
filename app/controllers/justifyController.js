@@ -4,14 +4,15 @@ module.exports = {
 
     /**
      * middleware that justifies text and send it back
-     * @param {*} req 
-     * @param {*} res 
+     * @param {object} req - request 
+     * @param {object} res - response
      */
 
-    handleJustify: (_, res) => {
+    handleJustify: (req, res) => {
         const words = res.locals.words;
        
         const justifiedText = justifyText(words);
+        res.setHeader('content-type', 'text/plain');
         res.send(justifiedText);
     },
 }
