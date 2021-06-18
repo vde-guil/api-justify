@@ -39,7 +39,6 @@ module.exports = {
 
     login: async (req, res) => {
         const { email, password } = req.body;
-        console.log("caca");
         try {
 
             const user = await User.findByEmail(email);

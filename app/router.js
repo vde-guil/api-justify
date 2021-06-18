@@ -20,6 +20,9 @@ const { cleanTextToJustify } = require('./services/cleanBodyText');
 //limit rate validator
 const { limitRate } = require('./services/limitRate');
 
+// body sanitizer to protect agains xss attacks
+
+const bodySanitizer = require('./services/bodySanitizer');
 
 /**
  * Route to register a new user
@@ -30,7 +33,7 @@ const { limitRate } = require('./services/limitRate');
  * @returns {object} 201 - object.message: user Successfuly created
  * @returns {object} 500 - object.message: server error
  */
-router.post('/register', validateBody(registerSchema), userController.register);
+router.post('/register', bodySanitizer, validateBody(registerSchema), userController.register);
 
 /**
  * Route to authenticate a user
@@ -43,7 +46,7 @@ router.post('/register', validateBody(registerSchema), userController.register);
  * @returns {object} 500 - object.message: server error
  * 
  */
-router.post('/login', validateBody(loginSchema), userController.login);
+router.post('/login', bodySanitizer, validateBody(loginSchema), userController.login);
 
 /**
  * Route to authenticate a user
@@ -59,6 +62,6 @@ router.post('/login', validateBody(loginSchema), userController.login);
  * @security JWT
  * 
  */
-router.post('/justify', verifyToken, cleanTextToJustify, limitRate, justifyController.handleJustify);
+router.post('/justify', verifyToken, bodySanitizer, cleanTextToJustify, limitRate, justifyController.handleJustify);
 
 module.exports = router;
